@@ -22,9 +22,9 @@ public class Brod {
 	private int godina;
 	private int kabine;
 	private int lezajevi;
-	private float gaz;
+	private String gaz;
 	private String brzina;
-	private float duljinaPrekoSvega;
+	private String duljinaPrekoSvega;
 	private int tus;
 	private int cijena;
 	private String posada;
@@ -101,11 +101,11 @@ public class Brod {
 		this.lezajevi = lezajevi;
 	}
 
-	public float getGaz() {
+	public String getGaz() {
 		return gaz;
 	}
 
-	public void setGaz(float gaz) {
+	public void setGaz(String gaz) {
 		this.gaz = gaz;
 	}
 
@@ -117,11 +117,11 @@ public class Brod {
 		this.brzina = brzinaKrstarenja;
 	}
 
-	public float getDuljinaPrekoSvega() {
+	public String getDuljinaPrekoSvega() {
 		return duljinaPrekoSvega;
 	}
 
-	public void setDuljinaPrekoSvega(float duljinaPrekoSvega) {
+	public void setDuljinaPrekoSvega(String duljinaPrekoSvega) {
 		this.duljinaPrekoSvega = duljinaPrekoSvega;
 	}
 
