@@ -65,7 +65,6 @@ public class BoatController {
 	public String uploadImage(@RequestParam("image")MultipartFile file, @RequestParam("name")String ime){
 		String temp = brodService.uploadImage(file, ime);
 		System.out.println(temp);
-		
 		return "redirect:/BoatListing.jsx";
 	}
 	
