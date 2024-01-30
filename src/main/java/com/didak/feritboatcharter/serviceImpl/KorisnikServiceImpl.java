@@ -84,6 +84,23 @@ public class KorisnikServiceImpl implements KorisnikService {
 			jdbcTemplate.update(sql, img, id);
 		
 	}
+
+	@Override
+	public boolean checkIfUserHasDozvola(int id) {
+		
+		String sql = "SELECT dozvola FROM korisnik WHERE id=:id ";
+		MapSqlParameterSource map = new MapSqlParameterSource();
+		map.addValue("id", id);
+		
+		String tempDozvola = namedParameterJdbcTemplate.queryForObject(sql, map, String.class);
+		
+		if (tempDozvola != null) {
+			return true;
+		}
+		
+		return false;
+		
+	}
 }
 
 

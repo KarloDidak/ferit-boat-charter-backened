@@ -71,6 +71,11 @@ public class KorisnikController {
 	}
 	
 	
+	@GetMapping("/provjeraDozvoleKorisnika")
+	public boolean checkIfUserHasDozvola(@RequestParam int id) {
+		return korisnikService.checkIfUserHasDozvola(id);
+	}
+	
 	
 }
 

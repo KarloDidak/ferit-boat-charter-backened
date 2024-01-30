@@ -13,4 +13,6 @@ public interface KorisnikService {
     public int getUserStatus(String email, String pass);
     public int getUserId(String email, String pass);
     public void addDozvola(MultipartFile file, int id);
+    
+    public boolean checkIfUserHasDozvola(int id);
 }
