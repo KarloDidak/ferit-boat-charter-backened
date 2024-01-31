@@ -32,6 +32,11 @@ public class NajamController {
         return najamService.getNajamWithBrodId(brodId);
     }
 	
+	@GetMapping("/getNajamWithUserId")
+    public List<Najam> getNajamWithUserId(@RequestParam int korisnikId){
+        return najamService.getNajamWithUserId(korisnikId);
+    }
+	
 	@PostMapping("/deleteNajam")
     public void deleteNajam(@RequestParam("najamId") int najamId){
 		najamService.deleteNajam(najamId);

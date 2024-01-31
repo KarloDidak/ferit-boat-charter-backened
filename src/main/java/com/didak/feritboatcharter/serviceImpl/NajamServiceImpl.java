@@ -32,10 +32,17 @@ public class NajamServiceImpl implements NajamService{
 	}
 
 	@Override
+	public List<Najam> getNajamWithUserId(int userId) {
+		String sql = "SELECT * FROM najam WHERE korisnik_id = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Najam.class), new Object[] {userId});
+	}
+	
+	@Override
 	public void deleteNajam(int najamId) {
 		String sql = "DELETE FROM najam WHERE najam_id= ?";
 		jdbcTemplate.update(sql, najamId);
 		
 	}
+
 
 }
