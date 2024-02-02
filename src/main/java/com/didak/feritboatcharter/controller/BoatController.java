@@ -30,6 +30,11 @@ public class BoatController {
         return brodService.getAllBrod();
     }
 	
+	@GetMapping("/getBrodWithId")
+    public Brod getBrodWithId(@RequestParam int id){
+        return brodService.getBrodWithId(id);
+    }
+	
 	@GetMapping("/getBrodWithName")
     public Brod getBrodWithName(@RequestParam String ime){
 		Brod temp = brodService.getBrodWithName(ime);

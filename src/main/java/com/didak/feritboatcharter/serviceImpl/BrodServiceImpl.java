@@ -38,6 +38,15 @@ public class BrodServiceImpl implements BrodService {
 	}
 
 	@Override
+	public Brod getBrodWithId(int id) {
+		String sql = "select id, brzina, cijena, duljina_preko_svega, gaz, godina, ime, slika, kabine, lezajevi, motor, opis, posada, "
+				+ "regija, tip, tus, slobodan_do, slobodan_od from brod where id = ?";		
+		
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Brod.class) ,new Object[] {id});
+	}
+
+	
+	@Override
 	public Brod getBrodWithName(String ime) {
 		String sql = "select id, brzina, cijena, duljina_preko_svega, gaz, godina, ime, slika, kabine, lezajevi, motor, opis, posada, "
 				+ "regija, tip, tus, slobodan_do, slobodan_od from brod where ime = ?";
@@ -148,7 +157,6 @@ public class BrodServiceImpl implements BrodService {
 	}
 
 
-	
 	/*
 	
 	 PRIMJER IZ SUI-a
