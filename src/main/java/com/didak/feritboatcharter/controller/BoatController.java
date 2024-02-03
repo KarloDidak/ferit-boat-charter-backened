@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,9 +62,9 @@ public class BoatController {
 	
 		
 	@PostMapping("/add")
-	public String postNewBrod(@RequestBody Brod brod) {	
+	public ResponseEntity<String> postNewBrod(@RequestBody Brod brod) {	
 		brodService.addNewBrod(brod);
-		return "Dodan NOVI brod";
+		return new ResponseEntity<>("Uspjesno dodan Brod", HttpStatus.OK);
 	}
 	
 	
