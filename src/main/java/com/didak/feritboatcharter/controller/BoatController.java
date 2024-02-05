@@ -21,7 +21,7 @@ import com.didak.feritboatcharter.service.BrodService;
 
 @RestController
 @RequestMapping("/brod")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class BoatController {
 
 	@Autowired
