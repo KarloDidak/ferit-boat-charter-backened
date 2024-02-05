@@ -21,7 +21,7 @@ import com.didak.feritboatcharter.service.BrodService;
 
 @RestController
 @RequestMapping("/brod")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class BoatController {
 
 	@Autowired
@@ -60,7 +60,7 @@ public class BoatController {
 		return brodService.getBrodForDropDownForm(tip_broda, regija, formatiraniDatumOd, formatiraniDatumDo);
     }
 	
-		
+
 	@PostMapping("/add")
 	public ResponseEntity<String> postNewBrod(@RequestBody Brod brod) {	
 		brodService.addNewBrod(brod);
