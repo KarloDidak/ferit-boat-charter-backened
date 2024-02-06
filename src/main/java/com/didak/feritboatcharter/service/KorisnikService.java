@@ -9,6 +9,7 @@ import com.didak.feritboatcharter.models.Korisnik;
 public interface KorisnikService {
     public Korisnik saveKorisnik(Korisnik korisnik);
     public List<Korisnik> getAllKorisnik();
+    public Boolean checkIfAlreadyRegistered(String email);
     public Boolean checkIfUserExist(String email, String pass);
     public int getUserStatus(String email, String pass);
     public int getUserId(String email, String pass);

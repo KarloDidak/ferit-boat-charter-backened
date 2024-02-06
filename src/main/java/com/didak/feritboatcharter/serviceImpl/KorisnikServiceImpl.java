@@ -35,6 +35,15 @@ public class KorisnikServiceImpl implements KorisnikService {
 	public List<Korisnik> getAllKorisnik() {
 		return korisnikRepository.findAll();
 	}
+	
+	@Override
+	public Boolean checkIfAlreadyRegistered(String email) {
+		String sql = "SELECT EXISTS(SELECT 1 FROM korisnik WHERE mail=:mail) AS user_exists";
+		MapSqlParameterSource map = new MapSqlParameterSource();
+		map.addValue("mail", email);
+		boolean mailExist = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class) > 0;
+		return mailExist;
+	}
 
 	@Override
 	public Boolean checkIfUserExist(String email, String sifra) {
@@ -101,6 +110,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 		return false;
 		
 	}
+
 }
 
 

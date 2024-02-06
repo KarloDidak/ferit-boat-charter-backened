@@ -52,6 +52,11 @@ public class KorisnikController {
 		return res;
 	}
 	
+	@GetMapping("/checkIfAlreadyRegistered")
+	public Boolean checkIfUserAlreadyRegistered(@RequestParam String email) {
+		Boolean check = korisnikService.checkIfAlreadyRegistered(email);
+		return check;
+	}
 	
 	@GetMapping("/checkIfUserExistandGetUserStatus")
 	public int checkIfUserExistandGetUserStatus(@RequestParam String email, @RequestParam String pass) {
