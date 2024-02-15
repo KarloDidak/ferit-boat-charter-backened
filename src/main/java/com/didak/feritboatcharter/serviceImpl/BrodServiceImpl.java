@@ -92,7 +92,7 @@ public class BrodServiceImpl implements BrodService {
 	
 	@Override
 	public List<Brod> getBrodWithDatumi(String slobodanOd, String slobodanDo) {
-		String sql = "SELECT * FROM `brod` WHERE `slobodan_od`>= ? AND `slobodan_od`<= ?";
+		String sql = "SELECT * FROM `brod` WHERE `slobodan_od`<= ? AND `slobodan_do`>= ?";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Brod.class), new Object[] {slobodanOd, slobodanDo});
 	}
 	
@@ -114,11 +114,11 @@ public class BrodServiceImpl implements BrodService {
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Brod.class), new Object[] {slobodanOd, slobodanDo});
 			
 		}else if (tipBroda == null) {
-			 sql = "SELECT * FROM `brod` WHERE regija = ? AND `slobodan_od`>= ? AND `slobodan_od`<= ?";
+			 sql = "SELECT * FROM `brod` WHERE regija = ? AND `slobodan_od`<= ? AND `slobodan_do`>= ?";
 			 return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Brod.class), new Object[] {regija, slobodanOd, slobodanDo});
 			 
 		}else if(regija == null) {
-			 sql = "SELECT * FROM `brod` WHERE tip = ? AND `slobodan_od`>= ? AND `slobodan_od`<= ?";
+			 sql = "SELECT * FROM `brod` WHERE tip = ? AND `slobodan_od`<= ? AND `slobodan_do`>= ?";
 			 return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Brod.class), new Object[] {tipBroda, slobodanOd, slobodanDo});
 			 
 		}else if(slobodanOd != "1970-01-01" && slobodanDo != "1970-01-01") {
@@ -126,16 +126,14 @@ public class BrodServiceImpl implements BrodService {
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Brod.class), new Object[] {tipBroda, regija});
 			 
 		}else {
-			sql = "SELECT * FROM `brod` WHERE tip = ? AND regija = ? AND `slobodan_od`>= ? AND `slobodan_od`<= ?";
+			sql = "SELECT * FROM `brod` WHERE tip = ? AND regija = ? AND `slobodan_od`<= ? AND `slobodan_do`>= ?";
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Brod.class), new Object[] {tipBroda, regija, slobodanOd, slobodanDo});
 		}
 	}
 	
 	@Override
 	public String uploadImage(MultipartFile file, String ime) {
-
 			String img = null;
-		
 			try {
 				 img = Base64.getEncoder().encodeToString(file.getBytes());
 			} catch (IOException e) {
@@ -146,8 +144,7 @@ public class BrodServiceImpl implements BrodService {
 						
 			jdbcTemplate.update(sql, img, ime);
 			
-			return "Proces spremanja slike odraden";
-				
+			return "Proces spremanja slike odraden";		
 	}
 
 	@Override
@@ -155,19 +152,5 @@ public class BrodServiceImpl implements BrodService {
 		String sql = "DELETE FROM brod WHERE ime= ?";
 		jdbcTemplate.update(sql, ime);
 	}
-
-
-	/*
-	
-	 PRIMJER IZ SUI-a
-	 @Override
-	 public List<Artefakt> getArtefatke(Integer pIdGrupe){
-	 	String tSql = "select ID_ARTEFAKTA, ID_GRUPE, SIF_ARTEFAKTA, NAZ_ARTEFAKATA, OPIS_ARTEFAKATA, STS, TSTAMP, TSTAMP_OBRADE form
-	 	ARTEFAKT where ID_GRUPE = ? ORDER by SIF_ARTEFAKTA ASC";
-	 	return jdbcTemplate.query(tSql, new Object[]){pIdGrupe}, new BeanPropertyRowMapper<>(Artefakt.class));
-	 
-	 }
-	 	  
-	 */
 
 }
