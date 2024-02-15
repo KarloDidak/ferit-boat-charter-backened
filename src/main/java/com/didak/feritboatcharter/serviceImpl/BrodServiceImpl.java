@@ -121,10 +121,10 @@ public class BrodServiceImpl implements BrodService {
 			 sql = "SELECT * FROM `brod` WHERE tip = ? AND `slobodan_od`<= ? AND `slobodan_do`>= ?";
 			 return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Brod.class), new Object[] {tipBroda, slobodanOd, slobodanDo});
 			 
-		}else if(slobodanOd != "1970-01-01" && slobodanDo != "1970-01-01") {
+		}else if(slobodanOd.equals("1970-01-01") && slobodanDo.equals("1970-01-01")) {
 			sql = "SELECT * FROM `brod` WHERE tip = ? and regija = ?";
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Brod.class), new Object[] {tipBroda, regija});
-			 
+	 
 		}else {
 			sql = "SELECT * FROM `brod` WHERE tip = ? AND regija = ? AND `slobodan_od`<= ? AND `slobodan_do`>= ?";
 			return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Brod.class), new Object[] {tipBroda, regija, slobodanOd, slobodanDo});
